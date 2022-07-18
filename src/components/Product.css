@@ -1,0 +1,17 @@
+.product_card {
+  border: 1px solid #333;
+  width: 30%;
+}
+
+.product_card h4 {
+  margin:0;
+}
+
+.product_card img {
+  width: 100%;
+}
+
+.product_card .price_buttons {
+  display: flex;
+  justify-content: space-between;
+}
