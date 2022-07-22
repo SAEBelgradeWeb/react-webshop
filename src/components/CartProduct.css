@@ -1,0 +1,15 @@
+.cart_product {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.cart_product button {
+  border: none;
+  background-color: transparent;
+}
+
+.cart_product button:hover {
+  cursor: pointer;
+  transform: scale(1.3);
+}

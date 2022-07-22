@@ -1,3 +1,4 @@
+import { BsFillCartFill as CartIcon } from "react-icons/bs"
 import { Link } from "react-router-dom";
 import "./Navigation.css"
 
@@ -10,7 +11,9 @@ const Navigation = () => {
         </li>
         
         <li>
-          <Link to="/cart">Cart</Link>
+          <Link to="/cart">
+            <CartIcon />
+          </Link>
         </li>
       </ul>
     </nav>

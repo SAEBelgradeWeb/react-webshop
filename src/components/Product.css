@@ -15,3 +15,14 @@
   display: flex;
   justify-content: space-between;
 }
+
+.product_card .price_buttons button {
+  border: none;
+  background-color: transparent;
+  transition: 0.3s ease-out;
+}
+
+.product_card .price_buttons button:hover {
+  cursor: pointer;
+  transform: scale(1.3);
+}

@@ -45,10 +45,52 @@ function App() {
     console.log(cart)
   },[cart])
 
+  // add to cart function
   function addToCart(id){
-    console.log('ADD TO CART',id)
-    const newProduct = products.filter(product => product.id == id)
-    setCart([...cart,newProduct])
+    const isItemInCart = cart.find(product => product.id == id)
+    if(isItemInCart === undefined){
+      const newProduct = products.find(product => product.id == id)
+      newProduct.quantity = 1;
+
+      setCart([...cart,newProduct])
+    } else {
+      const newCart = cart.map(product => {
+        if(product.id == id) {
+          product.quantity = product.quantity + 1;
+          return product
+        } else {
+          return product;
+        }
+      })
+
+      setCart(newCart)
+    }
+  }
+
+
+  // remove from cart function
+  function removeFromCart(id){
+    console.log('remove from cart',id)
+    const product = cart.find(product => product.id === id)
+    
+    var newCart;
+
+    // quantity higher than 1, simply deduct 1 from quantity
+    if(product.quantity > 1){
+      newCart = cart.map(product => {
+        if(product.id === id){
+          product.quantity = product.quantity - 1;
+          return product;
+        } else {
+          return product;
+        }
+      })
+    } else {
+      // or quantity = 1 , remove object from cart
+      newCart = cart.filter(product => product.id !== id)
+    }
+
+    setCart(newCart)
   }
 
   return (
@@ -57,7 +99,7 @@ function App() {
         <Navigation />
         <Routes>
           <Route path="/" element={<Home products={products} addToCart={addToCart} />} />
-          <Route path="/cart" element={<Cart/>} />
+          <Route path="/cart" element={<Cart cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} />} />
           <Route path="*" element={<h1>404 - not found.</h1>} />
         </Routes>
       </Router>
