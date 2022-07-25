@@ -1,6 +1,6 @@
 import './App.css';
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import Home from "./pages/Home"
 import Cart from "./pages/Cart"
@@ -41,10 +41,6 @@ function App() {
 
   const [cart, setCart] = useState([])
 
-  useEffect(()=>{
-    console.log(cart)
-  },[cart])
-
   // add to cart function
   function addToCart(id){
     const isItemInCart = cart.find(product => product.id == id)
@@ -53,6 +49,7 @@ function App() {
       newProduct.quantity = 1;
 
       setCart([...cart,newProduct])
+      // this line here does not know that cart has been changed
     } else {
       const newCart = cart.map(product => {
         if(product.id == id) {
@@ -96,7 +93,7 @@ function App() {
   return (
     <div>
       <Router>
-        <Navigation />
+        <Navigation numOfItemsInCart={cart.length} />
         <Routes>
           <Route path="/" element={<Home products={products} addToCart={addToCart} />} />
           <Route path="/cart" element={<Cart cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} />} />
